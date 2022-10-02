@@ -252,7 +252,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """Returns true if the user wants to close the application"""
 
         # ask the user if he wants to save changes
-        if config.changed:
+        if config._changed:
             message = self.tr('The settings have been modified. Do you want to save them?')
             ret = QMessageBox.warning(self, self.tr('Unsaved changes'),
                                       message,
