@@ -32,10 +32,13 @@ def get_theme_name(path):
 
     # collect themes
     themes: list
-    if 'themes' in manifest['contributes']:
-        themes = manifest['contributes']['themes']
-    elif 'Themes' in manifest['contributes']:
-        themes = manifest['contributes']['Themes']
+    if 'contributes' in manifest.keys():
+        if 'themes' in manifest['contributes']:
+            themes = manifest['contributes']['themes']
+        elif 'Themes' in manifest['contributes']:
+            themes = manifest['contributes']['Themes']
+        else:
+            return []
     else:
         return []
 
