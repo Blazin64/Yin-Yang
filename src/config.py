@@ -143,15 +143,16 @@ def get_desktop() -> Desktop:
 
     # these are the envs I will look for
     # feel free to add your Desktop and see if it works
+    cinnamon_re = re.compile(r'cinnamon')
     gnome_re = re.compile(r'gnome')
     budgie_re = re.compile(r'budgie')
     kde_re = re.compile(r'kde')
     plasma_re = re.compile(r'plasma')
     plasma5_re = re.compile(r'plasma5')
 
-    if (gnome_re.search(env) or
-            gnome_re.search(second_env) or gnome_re.search(third_env)):
-        return Desktop.GNOME
+    if (cinnamon_re.search(env) or
+            cinnamon_re.search(second_env) or cinnamon_re.search(third_env)):
+        return Desktop.CINNAMON
     if (budgie_re.search(env) or
             budgie_re.search(second_env) or budgie_re.search(third_env)):
         return Desktop.GNOME
