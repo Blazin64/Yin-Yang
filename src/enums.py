@@ -12,4 +12,5 @@ class Modes(Enum):
 class Desktop(Enum):
     KDE = 'kde'
     GNOME = 'gnome'
+    CINNAMON = 'cinnamon'
     UNKNOWN = 'unknown'
