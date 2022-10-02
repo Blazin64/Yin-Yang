@@ -21,8 +21,21 @@ class Gtk(PluginDesktopDependent):
                 if not self.strategy.available:
                     print('You need to install an extension for gnome to use it. \n'
                           'You can get it from here: https://extensions.gnome.org/extension/19/user-themes/')
+            case Desktop.CINNAMON:
+                super().__init__(_Cinnamon())
             case _:
                 super().__init__(None)
+
+
+class _Cinnamon(PluginCommandline):
+    name = 'GTK'
+
+    def __init__(self):
+        super().__init__(['gsettings', 'set', 'org.cinnamon.desktop.interface', 'gtk-theme', '{theme}'])
+
+    @property
+    def available(self) -> bool:
+        return test_gnome_availability(self.command)
 
 
 class _Gnome(PluginCommandline):

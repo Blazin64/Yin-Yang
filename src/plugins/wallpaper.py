@@ -19,6 +19,8 @@ class Wallpaper(PluginDesktopDependent):
                 super().__init__(_Kde())
             case Desktop.GNOME:
                 super().__init__(_Gnome())
+            case Desktop.CINNAMON:
+                super().__init__(_Cinnamon())
             case _:
                 super().__init__(None)
 
@@ -43,6 +45,16 @@ class Wallpaper(PluginDesktopDependent):
             widgets.append(grp)
 
         return widgets
+
+
+class _Cinnamon(PluginCommandline):
+    name = 'Wallpaper'
+
+    def __init__(self):
+        super().__init__(['gsettings', 'set', 'org.cinnamon.desktop.background', 'picture-uri', 'file://{theme}'])
+
+    def available(self) -> bool:
+        return test_gnome_availability(self.command)
 
 
 class _Gnome(PluginCommandline):
